@@ -1,0 +1,37 @@
+--회원번호 관리객체
+create sequence seq_member_idx;
+
+--회원테이블
+CREATE TABLE MEMBER(
+	IDX NUMBER PRIMARY KEY,
+	NAME VARCHAR2(100) NOT NULL,
+	ID VARCHAR2(100) NOT NULL UNIQUE,
+	PW VARCHAR2(200) NOT NULL,
+	EMAIL VARCHAR2(100) UNIQUE
+);
+
+--샘플 데이터 추가
+INSERT INTO MEMBER VALUES
+(SEQ_MEMBER_IDX.NEXTVAL, '홍길동', 'ONE', '1234', 'ONE@KOREA.COM');
+
+--COMMIT
+COMMIT;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

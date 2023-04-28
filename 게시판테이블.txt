@@ -1,0 +1,67 @@
+--시퀀스 생성: 일련번호
+CREATE SEQUENCE SEQ_BOARD_IDX;
+
+--테이블 생성
+CREATE TABLE BOARD(
+	IDX NUMBER(3) PRIMARY KEY, --게시판 일련번호
+	NAME VARCHAR2(100) NOT NULL, --작성자
+	SUBJECT VARCHAR2(255) NOT NULL, --게시글 제목
+	CONTENT CLOB, --CONTENT: 내용 CLOB: VARCHAR2보다 큰 용량의 값을 넣어야 할 때
+	PWD VARCHAR2(100), --비밀번호
+	IP VARCHAR2(100), --IP
+	REGDATE DATE, --작성일자
+	READHIT NUMBER(3) DEFAULT 0, --조회수 DEFAULT 0: 생성 시 기본 값 = 0
+	REF NUMBER(3), --기준글 번호(댓글을 달기 위한 메인글)
+	STEP NUMBER(3), --댓글 순서(수직적)
+	DEPTH NUMBER(3) --댓글 깊이(대댓글)
+);
+
+--샘플 데이터 추가(메인글 1)
+INSERT INTO BOARD VALUES(SEQ_BOARD_IDX.NEXTVAL,
+			 '일길동',
+			 '내가 일등!',
+			 '동해물과 백두산이',
+			 '1234',
+			 '192.0.0.1',
+			 SYSDATE,
+			 0,
+			 SEQ_BOARD_IDX.CURRVAL, -- 시퀀스 번호를 가져오는 속성
+			 0,
+			 0
+);
+
+--댓글
+INSERT INTO BOARD VALUES(SEQ_BOARD_IDX.NEXTVAL,
+			 '이길동',
+			 '난 2등',
+			 '마르고 닳도록',
+			 '2345',
+			 '192.0.0.2',
+			 SYSDATE,
+			 0,
+			 1,
+			 1,
+			 1
+);
+
+--대댓글
+INSERT INTO BOARD VALUES(SEQ_BOARD_IDX.NEXTVAL,
+			 '삼길동',
+			 '난 3등',
+			 '하느님이 보우하사',
+			 '3456',
+			 '192.0.0.3',
+			 SYSDATE,
+			 0,
+			 1,
+			 2,
+			 2
+);
+
+--COMMIT
+COMMIT;
+
+
+
+
+
