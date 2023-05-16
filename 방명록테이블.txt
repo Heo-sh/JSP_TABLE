@@ -1,0 +1,40 @@
+--방명록 DB
+
+--sequence생성
+create sequence seq_visit_idx;
+
+--table create
+create table visit(
+	idx NUMBER(3) PRIMARY KEY,
+	NAME VARCHAR2(50), --작성자
+	CONTENT VARCHAR2(50), --내용
+	PWD VARCHAR2(50), --비번
+	IP VARCHAR2(20),
+	REGDATE DATE --작성일
+);
+
+--SAMPLE DATA
+INSERT INTO VISIT VALUES(SEQ_VISIT_IDX.NEXTVAL,
+		          '일길동',
+		          '내가 일등',
+		          '1111',
+		          '192.1.1.1',
+		          SYSDATE);
+INSERT INTO VISIT VALUES(SEQ_VISIT_IDX.NEXTVAL,
+		          '이길동',
+		          '나는 2등',
+		          '1111',
+		          '192.1.1.1',
+		          SYSDATE);
+--COMMIT
+COMMIT;
+
+
+
+
+
+
+
+
+
+
